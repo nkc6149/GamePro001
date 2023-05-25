@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             transform.Translate(-0.15f,0,0);
+            if (transform.position.y > 6)
+            {
+                transform.Translate(0, 0, 0);
+            }
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
