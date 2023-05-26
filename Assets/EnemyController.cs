@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
         {
             GameObject director = GameObject.Find("GameDirector");
             director.GetComponent<GameDirector>().DecreaseTime();
-
             Destroy(gameObject);
         }
 
