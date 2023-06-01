@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    GameObject Score;
+    float km ;
+
     void Start()
     {
-      
+        this.Score = GameObject.Find("Score");
+       
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        km++;
+        this.Score.GetComponent<Text>().text = km + "Km";
     }
 }

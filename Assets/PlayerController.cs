@@ -1,63 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
     Animator anm;
-    
+    Rigidbody2D rb;
+    Vector2 Vector2;
+
     void Start()
     {
         Application.targetFrameRate = 60;
         anm = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        Vector2.y = Input.GetAxisRaw("Horizontal");
+        Vector2.x = Input.GetAxisRaw("Vertical") * -1;
+        rb.transform.Translate(Vector2.normalized / 5 ) ;
+
+        if (transform.position.x <= -8.5 && transform.position.x >= 8.5)
         {
-            transform.Translate(-0.15f,0,0);
-
-            if (transform.position.y >= 4.8)
-            {
-                transform.Translate(0.15f, 0, 0);
-            }
+            transform.Translate(Vector2.zero);
         }
-
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (transform.position.y <= -4 && transform.position.y >= 4)
         {
-            transform.Translate(0.15f, 0, 0);
-
-            if (transform.position.y <= -4.5)
-            {
-                transform.Translate(-0.15f, 0, 0);
-            }
+            transform.Translate(-Vector2.zero);
         }
-
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(0, 0.15f, 0);
-
-            if (transform.position.x >= 8.5)
-            {
-                transform.Translate(0,-0.15f, 0);
-            }
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(0,-0.15f, 0);
-            anm.Play("MyChar");
-
-            if (transform.position.x <= -8.5)
-            {
-                transform.Translate(0,0.15f, 0);
-            }
-        }
+      
 
         float y = Input.GetAxisRaw("Vertical");
-
         if (y == 0)
         {
             anm.Play("MyChar");
