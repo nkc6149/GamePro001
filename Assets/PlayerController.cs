@@ -23,17 +23,8 @@ public class PlayerController : MonoBehaviour
         Vector2.x = Input.GetAxisRaw("Vertical") * -1;
         rb.transform.Translate(Vector2.normalized / 5 ) ;
 
-        if (transform.position.x <= -8.5 && transform.position.x >= 8.5)
-        {
-            transform.Translate(Vector2.zero);
-        }
-        if (transform.position.y <= -4 && transform.position.y >= 4)
-        {
-            transform.Translate(-Vector2.zero);
-        }
-      
-
         float y = Input.GetAxisRaw("Vertical");
+
         if (y == 0)
         {
             anm.Play("MyChar");
